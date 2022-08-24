@@ -41,7 +41,7 @@ def parse_msg(msg, with_attachments=False, attachment_type="zip"):
             for attached in msg_obj.attachments
             if attachment_type is None or attached.longFilename.endswith(attachment_type)
         }
-    return [v for v in msg_properties_dict.values()]
+    return list(msg_properties_dict.values())
 
 
 @udf(types.BinaryType())
@@ -51,7 +51,6 @@ def get_email_attachment(email_file, name_filter, index):
     Returns None if not found.
     """
     raise NotImplementedError()
-    return None
 
 
 @udf(types.BinaryType())
@@ -60,7 +59,6 @@ def extract_file_from_zip(zipfile, filename):
     Returns the compressed file `filename` from `zipfile`.
     """
     raise NotImplementedError()
-    return None
 
 
 @udf(types.StringType())
